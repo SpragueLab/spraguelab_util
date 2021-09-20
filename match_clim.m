@@ -5,11 +5,24 @@ function new_clim = match_clim(gobj,new_clim)
 %   set of axes
 % - if no input arguments, use get(0,'Children') to get handles
 
+% TODO: make a match_lim.m function that's called from these...
 
+% Tommy Sprague; Mar 31 2020
 
 if nargin < 2
     
-    tmp_clim = get(gobj,'CLim');
+      
+    % only use axes
+    axobj = [];
+    for gg = 1:length(gobj)
+        if strcmpi(get(gobj(gg),'Type'),'Axes')
+            axobj = [axobj gobj(gg)];
+        end
+        
+    end
+    
+    
+    tmp_clim = get(axobj,'CLim');
     
     if iscell(tmp_clim)
         tmp_clim = cell2mat(tmp_clim);
@@ -19,7 +32,7 @@ if nargin < 2
     
 end
 
-set(gobj,'CLim',new_clim);
+set(axobj,'CLim',new_clim);
 
 
 

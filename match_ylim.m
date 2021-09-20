@@ -11,13 +11,14 @@ function new_ylim = match_ylim(gobj,new_ylim)
 
 if nargin < 2
     
-    
     % only use axes
     axobj = [];
     for gg = 1:length(gobj)
+        
         if strcmpi(get(gobj(gg),'Type'),'Axes')
             axobj = [axobj gobj(gg)];
         end
+    
     end
     
     
