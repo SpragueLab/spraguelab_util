@@ -50,8 +50,18 @@ if nargin < 3 || isempty(chan_size)
 end
 
 if nargin < 4 || isempty(chan_pow)
+    % a steerable filter is one with odd # of channels and even power <
+    % #channels
     chan_pow = n_basis-mod(n_basis,2);
+
 end
+
+% check if basis is steerable
+if (mod(n_basis,2)==1 && mod(chan_pow,2)~=0) || (mod(n_basis,2)==0)
+    fprintf('Warning: non-steerbale basis! Use an odd # of channels and even power\n');
+
+end
+
 
 % utility function to compute distance between two angles
 ang_dist = @(a,b) min(mod(a-b,360),mod(b-a,360));
