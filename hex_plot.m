@@ -18,7 +18,7 @@ marker_size = 2/(2*nrows);
 
 chan_range = [min(data) max(data)];
 n_colors = 1000;
-cmap = parula(n_colors+1);
+cmap = viridis(n_colors+1); % or parula...
 
 
 xx = cos(linspace(0,2*pi,501))*marker_size;
